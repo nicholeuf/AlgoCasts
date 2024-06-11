@@ -6,22 +6,42 @@
 // maxChar("apple 1231111") === "1"
 
 // My solution #1
+// function maxChar(str) {
+//   const charMap = {};
+//   let maxChars = 0;
+
+//   for (let char of str) {
+//     charMap[char] = charMap[char] + 1 || 1;
+//   }
+
+//   return Object.keys(charMap).reduce((val, char) => {
+//     if (charMap[char] > maxChars) {
+//       maxChars = charMap[char];
+//       return char;
+//     }
+
+//     return val;
+//   }, null);
+// }
+
+// Solution
 function maxChar(str) {
   const charMap = {};
-  let maxChars = 0;
+  let max = 0;
+  let maxChar = '';
 
   for (let char of str) {
     charMap[char] = charMap[char] + 1 || 1;
   }
 
-  return Object.keys(charMap).reduce((val, char) => {
-    if (charMap[char] > maxChars) {
-      maxChars = charMap[char];
-      return char;
+  for (let char in charMap) {
+    if (charMap[char] > max) {
+      max = charMap[char];
+      maxChar = char;
     }
+  }
 
-    return val;
-  }, null);
+  return maxChar;
 }
 
 module.exports = maxChar;
