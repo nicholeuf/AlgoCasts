@@ -9,11 +9,28 @@
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
 // My solution
+// function chunk(array, size) {
+//   const chunked = [];
+
+//   // i increments to the first index of each subarray
+//   for (let i = 0; i < array.length; i += size) {
+//     chunked.push(array.slice(i, i + size));
+//   }
+
+//   return chunked;
+// }
+
+// Solution #1
 function chunk(array, size) {
   const chunked = [];
 
-  for (let i = 0; i < array.length; i += size) {
-    chunked.push(array.slice(i, i + size));
+  for (let element of array) {
+    const last = chunked[chunked.length - 1];
+    if (!last || last.length === size) {
+      chunked.push([element]);
+    } else {
+      last.push(element);
+    }
   }
 
   return chunked;
