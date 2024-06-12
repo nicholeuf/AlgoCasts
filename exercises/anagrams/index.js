@@ -36,7 +36,7 @@ function anagrams(stringA, stringB) {
   const charMapA = toCharMap(normStringA);
   const charMapB = toCharMap(normStringB);
 
-  for (let char of Object.keys(charMapA)) {
+  for (let char in charMapA) {
     if (charMapA[char] !== charMapB[char]) {
       return false;
     }
