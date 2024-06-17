@@ -63,22 +63,54 @@
 //   }
 // }
 
-function pyramid(n) {
-  // calculate midpoint of row
-  const midpoint = Math.floor((2 * n - 1) / 2);
+// solution #1 (iterative)
+// function pyramid(n) {
+//   // calculate midpoint of row
+//   const midpoint = Math.floor((2 * n - 1) / 2);
 
-  for (let row = 0; row < n; row++) {
-    let level = '';
+//   for (let row = 0; row < n; row++) {
+//     let level = '';
 
-    for (let col = 0; col < 2 * n - 1; col++) {
-      if (midpoint - row <= col && midpoint + row >= col) {
-        level += '#';
-      } else {
-        level += ' ';
-      }
-    }
-    console.log(level);
+//     for (let col = 0; col < 2 * n - 1; col++) {
+//       if (midpoint - row <= col && midpoint + row >= col) {
+//         level += '#';
+//       } else {
+//         level += ' ';
+//       }
+//     }
+//     console.log(level);
+//   }
+// }
+
+// recursive solution
+// Base cases:
+// If row === n, end of problem
+// If col === 2 * n - 1, end of row
+// If midpoint - row <= col && midpoint + row>= col, add #
+// Otherwise add space
+function pyramid(n, row = 0, level = '') {
+  if (row === n) {
+    return;
   }
+
+  const col = level.length;
+
+  if (col === 2 * n - 1) {
+    console.log(level);
+    pyramid(n, row + 1);
+    return;
+  }
+
+  const midpoint = Math.floor((2 * n - 1) / 2);
+  let add;
+  if (midpoint - row <= col && midpoint + row >= col) {
+    add = '#';
+  } else {
+    add = ' ';
+  }
+
+  pyramid(n, row, level + add);
+  return;
 }
 
 module.exports = pyramid;
