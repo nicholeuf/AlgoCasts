@@ -38,27 +38,45 @@
 // console.log the level
 
 // My solution
-function pyramid(n) {
-  const maxRow = n;
-  const maxCol = n * 2 - 1;
+// function pyramid(n) {
+//   const maxRow = n;
+//   const maxCol = n * 2 - 1;
 
-  for (let row = 1; row <= maxRow; row++) {
-    const hashes = row * 2 - 1;
-    const spaces = (maxCol - hashes) / 2;
+//   for (let row = 1; row <= maxRow; row++) {
+//     const hashes = row * 2 - 1;
+//     const spaces = (maxCol - hashes) / 2;
+//     let level = '';
+
+//     for (let i = 0; i < spaces; i++) {
+//       level += ' ';
+//     }
+
+//     for (let i = 0; i < hashes; i++) {
+//       level += '#';
+//     }
+
+//     for (let i = 0; i < spaces; i++) {
+//       level += ' ';
+//     }
+
+//     console.log(level);
+//   }
+// }
+
+function pyramid(n) {
+  // calculate midpoint of row
+  const midpoint = Math.floor((2 * n - 1) / 2);
+
+  for (let row = 0; row < n; row++) {
     let level = '';
 
-    for (let i = 0; i < spaces; i++) {
-      level += ' ';
+    for (let col = 0; col < 2 * n - 1; col++) {
+      if (midpoint - row <= col && midpoint + row >= col) {
+        level += '#';
+      } else {
+        level += ' ';
+      }
     }
-
-    for (let i = 0; i < hashes; i++) {
-      level += '#';
-    }
-
-    for (let i = 0; i < spaces; i++) {
-      level += ' ';
-    }
-
     console.log(level);
   }
 }
