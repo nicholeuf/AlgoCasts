@@ -6,14 +6,61 @@
 // --- Examples
 //   pyramid(1)
 //       '#'
+// 1
+// 1x1
 //   pyramid(2)
 //       ' # '
 //       '###'
+// 1, 3
+// 2x3
 //   pyramid(3)
 //       '  #  '
 //       ' ### '
 //       '#####'
+// 1, 3, 5
+// 3x5
+//   pyramid(4)
+//       '   #   '
+//       '  ###  '
+//       ' ##### '
+//       '#######'
+// 1, 3, 5, 7
+// 4x7
 
-function pyramid(n) {}
+// row = n
+// col = 2n - 1
+
+// From 0 to n (iterate through rows)
+// Create empty string, level
+// From 0 to ? (columns)
+// If the column should have a #, add to the level
+// Else Add a space to level
+// console.log the level
+
+// My solution
+function pyramid(n) {
+  const maxRow = n;
+  const maxCol = n * 2 - 1;
+
+  for (let row = 1; row <= maxRow; row++) {
+    const hashes = row * 2 - 1;
+    const spaces = (maxCol - hashes) / 2;
+    let level = '';
+
+    for (let i = 0; i < spaces; i++) {
+      level += ' ';
+    }
+
+    for (let i = 0; i < hashes; i++) {
+      level += '#';
+    }
+
+    for (let i = 0; i < spaces; i++) {
+      level += ' ';
+    }
+
+    console.log(level);
+  }
+}
 
 module.exports = pyramid;
