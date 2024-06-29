@@ -8,19 +8,32 @@
 //   vowels('Why?') --> 0
 
 // iterative solution
+// function vowels(str) {
+//   const array = str
+//     .toLowerCase()
+//     .split('')
+//     .reduce((arr, character) => {
+//       if (['a', 'e', 'i', 'o', 'u'].includes(character)) {
+//         return arr.concat(character);
+//       }
+
+//       return arr;
+//     }, []);
+
+//   return array.length;
+// }
+
+// interative solution (official)
 function vowels(str) {
-  const array = str
-    .toLowerCase()
-    .split('')
-    .reduce((arr, character) => {
-      if (['a', 'e', 'i', 'o', 'u'].includes(character)) {
-        return arr.concat(character);
-      }
+  let count = 0;
 
-      return arr;
-    }, []);
+  for (let char of str.toLowerCase()) {
+    if (['a', 'e', 'i', 'o', 'u'].includes(char)) {
+      count++;
+    }
+  }
 
-  return array.length;
+  return count;
 }
 
 module.exports = vowels;
